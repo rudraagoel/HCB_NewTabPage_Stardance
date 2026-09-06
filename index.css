@@ -44,94 +44,126 @@ body {
 
 /* Search Bar */
 
-#search-bar-parent-div {
+        #search-bar-parent-div {
 
-    position: fixed;
+            position: fixed;
 
-    inset: 0;
+            inset: 0;
 
-    display: flex;
+            display: flex;
 
-    justify-content: center;
+            justify-content: center;
 
-    align-items: center;
+            align-items: center;
 
+        }
+
+        .searchbar-center-div {
+
+            position: fixed;
+
+            inset: 0;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding-bottom: 10rem;
+
+        }
+
+
+
+        .search{
+
+            width: 540px;
+
+            max-width: 90vw;
+
+            box-sizing: border-box;
+
+            height: 3.5rem;
+
+            padding-left: 1.5rem;
+
+            padding-right: 1.5rem;
+
+            display: flex;
+
+            align-items: center;
+
+            border-radius:36px;
+
+            background-color: #ffffff;
+
+            backdrop-filter: blur(24px); 
+
+            border: 1px solid rgba(63, 63, 70, 0.6);
+
+        }
+
+        .search:focus-within {
+
+            border-color: rgb(255, 255, 255); 
+
+            background-color: #fffdfd;
+
+            backdrop-filter: blur(24px); 
+
+        }
+
+        .search-input {
+
+            flex: 1;                 
+
+            background: transparent; 
+
+            border: none;            
+
+            outline: none;          
+
+            color: rgb(108, 105, 105); 
+
+        }
+
+        .search-input::placeholder {
+
+            color: rgb(46, 46, 46); 
+
+        }
+
+
+
+/* Clock */
+.clock-widget {
+    padding: 2rem 3rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    /* backdrop-filter: blur(10px); */
+    text-align: center;
 }
 
-.searchbar-center-div {
-
-    position: fixed;
-
-    inset: 0;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    padding-bottom: 10rem;
-
+.time-display {
+    font-size: 3rem;
+    font-family: 'Times New Roman', Times, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style:bold;
+    font-weight: 700;
+    color: #f8fafb;
+    letter-spacing: 3px;
+    text-shadow:1 1 1px rgba(249, 254, 195, 0.5);
+    width: 20px;
+    height: 20px;
 }
 
-
-
-.search{
-
-    width: 540px;
-
-    max-width: 90vw;
-
-    box-sizing: border-box;
-
-    height: 3.5rem;
-
-    padding-left: 1.5rem;
-
-    padding-right: 1.5rem;
-
-    display: flex;
-
-    align-items: center;
-
-    border-radius:36px;
-
-    background-color: #ffffff;
-
-    backdrop-filter: blur(24px); 
-
-    border: 1px solid rgba(63, 63, 70, 0.6);
-
+.date-display {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    width: 90px;
+    height: 20px;
+    padding-top: 80px;
 }
-
-.search:focus-within {
-
-    border-color: rgb(255, 255, 255); 
-
-    background-color: #fffdfd;
-
-    backdrop-filter: blur(24px); 
-
-}
-
-.search-input {
-
-    flex: 1;                 
-
-    background: transparent; 
-
-    border: none;            
-
-    outline: none;          
-
-    color: rgb(108, 105, 105); 
-
-}
-
-.search-input::placeholder {
-
-    color: rgb(46, 46, 46); 
-
-}
-
-
