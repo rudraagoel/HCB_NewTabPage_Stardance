@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Tab Layout - Rudra Goel</title>
-    <!-- Linking the external index.css stylesheet -->
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
     
@@ -15,7 +14,7 @@
         
         <div class="clock-widget">
              <div class="time-display" id="digital-time">00:00:00 PM</div>
-             <div class="date-display" id="digital-date">Loading...</div>
+            
         </div>
 
 
@@ -56,15 +55,110 @@
 
 
         <div class="todo">
+            <form id="todo-form" class="todo-form">
 
+        <input
+            type="text"
+            id="todo-input"
+            placeholder="What needs to be done?"
+            autocomplete="off"
+        >
+
+        <button type="submit">
+            Add
+        </button>
+
+        </form>
+
+        <div
+            class="todo-list"
+            id="todo-list"
+        ></div>
+
+    </div>
         </div>
 
-        <div class="calendar">
+        
+        <div class="calendar-widget"> 
+            <div class="calendar-card calendar-flipped" id="calendar-card">
 
+                <div class="calendar-front">
+                    <div class="calendar-content">
+
+                        <div class="calendar-month">
+                            <table>
+                                <tr class="calendar-weekdays">
+                                    <th>M</th>
+                                    <th>T</th>
+                                    <th>W</th>
+                                    <th>T</th>
+                                    <th>F</th>
+                                    <th>S</th>
+                                    <th>S</th>
+                                </tr>
+
+                                <tbody id="calendar-days"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="calendar-date">
+                            <div class="calendar-date-content">
+                                <div id="calendar-date">01</div>
+                                <div id="calendar-day">Monday</div>
+                                <div id="calendar-month-year">September/2026</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="calendar-back">
+                    <div class="calendar-back-content">
+
+                        <a
+                            href="#"
+                            id="news-link"
+                            class="news-banner"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img
+                                id="news-image"
+                                src=""
+                                alt="News"
+                            >
+
+                            <div class="news-info">
+
+                                <div class="news-category" id="news-category">
+                                    NEWS
+                                </div>
+
+                                <div class="news-title" id="news-title">
+                                    Loading latest story...
+                                </div>
+
+                                <div class="news-meta" id="news-meta">
+                                    Loading...
+                                </div>
+
+                            </div>
+                        </a>
+
+                        <div class="flip-hint">
+                            ↻ Flip for Calendar
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
+
+
         
 
-        <div class="news-feed">
+       
 
         </div>
 

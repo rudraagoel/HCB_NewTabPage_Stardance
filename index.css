@@ -157,7 +157,7 @@ body {
     height: 20px;
 }
 
-.date-display {
+/* .date-display {
     margin-top: 0.5rem;
     font-size: 1.1rem;
     color: #94a3b8;
@@ -166,12 +166,12 @@ body {
     width: 90px;
     height: 20px;
     padding-top: 80px;
-}
+} */
 
 /* Shortcuts */
 
 .shortcuts {
-    margin-top: 11rem;
+    margin-top: 17rem;
     margin-left: 3rem;
     /* margin-bottom: 10rem; */
 
@@ -303,4 +303,809 @@ body {
 
 .shortcut:hover .remove-shortcut {
     display: block;
+}
+
+/* CALENDAR */
+
+
+
+.calendar-widget {
+    position: fixed;
+    right: 27rem;
+    top: 24rem;
+
+    width: 400px;
+    height: 200px;
+
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+}
+
+.calendar-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+
+    transition: transform 0.8s ease;
+    cursor: pointer;
+}
+
+
+
+
+.calendar-front,
+.calendar-back {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 18px;
+    overflow: hidden;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.35);
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+
+
+
+.calendar-front {
+    text-transform: uppercase;
+}
+
+.calendar-content {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    transform: translateZ(60px);
+
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+
+
+
+.calendar-month {
+    width: 270px;
+    height: 100%;
+
+    padding: 20px 30px;
+
+    box-sizing: border-box;
+}
+
+.calendar-month table {
+    width: 100%;
+    height: 100%;
+
+    border-collapse: collapse;
+}
+
+.calendar-weekdays {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.calendar-month th {
+    width: 14%;
+
+    font-size: 10px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-weight: 400;
+
+    text-align: center;
+
+    transition: color 0.2s ease;
+}
+
+.calendar-month tbody tr {
+    height: 24px;
+}
+
+
+
+
+.calendar-day {
+    color: rgba(255, 255, 255, 0.9);
+
+    cursor: pointer;
+}
+
+.calendar-day:hover {
+    color: white;
+
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+
+
+
+.calendar-today {
+    color: white;
+
+    font-weight: 700;
+
+    text-decoration: underline;
+}
+
+
+
+
+.calendar-date {
+    height: 100%;
+    width: 130px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+    text-align: right;
+
+    padding: 10px 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transform-style: preserve-3d;
+}
+
+.calendar-date-content {
+    width: 100%;
+
+    transform:
+        translateZ(60px)
+        scale(0.9);
+}
+
+
+
+
+#calendar-date {
+    font-size: 50px;
+
+    color: #ffffff;
+
+    font-family:
+        'Times New Roman',
+        Times,
+        serif;
+
+    font-weight: 500;
+
+    line-height: 1;
+}
+
+
+
+#calendar-day {
+    margin-top: 8px;
+
+    font-size: 14px;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-weight: 400;
+}
+
+
+
+
+#calendar-month-year {
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-weight: 300;
+}
+
+
+
+
+.calendar-back {
+    transform: rotateY(180deg);
+}
+
+.calendar-back-content {
+    width: 100%;
+    height: 100%;
+
+    transform: translateZ(60px);
+
+    transform-style: preserve-3d;
+}
+
+.calendar-back-container {
+    width: calc(100% - 60px);
+    height: calc(100% - 40px);
+
+    margin-left: 30px;
+    margin-top: 20px;
+
+    box-sizing: border-box;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    transform-style: preserve-3d;
+}
+
+
+
+
+.calendar-flipped {
+    transform: rotateY(-180deg);
+}
+
+
+
+
+@media (max-width: 600px) {
+
+    .calendar-widget {
+        width: 90vw;
+        height: 180px;
+
+        right: 5vw;
+        top: 2rem;
+    }
+
+    .calendar-month {
+        width: 65%;
+        padding: 15px;
+    }
+
+    .calendar-date {
+        width: 35%;
+        padding: 10px 15px;
+    }
+
+    #calendar-date {
+        font-size: 38px;
+    }
+
+    #calendar-day {
+        font-size: 11px;
+    }
+
+    #calendar-month-year {
+        font-size: 8px;
+    }
+}
+
+
+/* Calendar back, news feed*/
+
+
+.calendar-back-content {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    box-sizing: border-box;
+
+    padding: 20px 25px;
+
+    transform: translateZ(60px);
+
+    transform-style: preserve-3d;
+}
+
+.news-banner {
+    width: 100%;
+    height: 120px;
+
+    display: flex;
+
+    gap: 15px;
+
+    color: white;
+    text-decoration: none;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    transition: background 0.2s ease;
+}
+
+.news-banner:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+
+
+#news-image {
+    width: 155px;
+    height: 120px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    flex-shrink: 0;
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+
+
+.news-info {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.news-category {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    margin-bottom: 7px;
+}
+
+.news-title {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1.25;
+
+    color: white;
+
+    display: -webkit-box;
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+.news-meta {
+    margin-top: 8px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 8px;
+
+    color: rgba(255, 255, 255, 0.45);
+}
+
+
+
+
+.flip-hint {
+    position: absolute;
+
+    bottom: 8px;
+    right: 12px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 0.8px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    pointer-events: none;
+
+    user-select: none;
+}
+
+.news-banner:hover + .flip-hint {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* TO-DO*/
+
+
+.todo {
+    position: fixed;
+
+    left: 59rem;
+    bottom: 3rem;
+
+    width: 300px;
+    height: 40vh;
+
+    min-height: 250px;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 18px;
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+
+
+
+.todo-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    margin-bottom: 15px;
+}
+
+.todo-header h3 {
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 16px;
+
+    letter-spacing: 1.5px;
+}
+
+#todo-count {
+    display: block;
+
+    margin-top: 4px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 9px;
+
+    color: rgba(255, 255, 255, 0.45);
+}
+
+
+
+
+#add-todo {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+#add-todo:hover {
+    background: rgba(255, 255, 255, 0.25);
+
+    transform: scale(1.05);
+}
+
+
+
+
+.todo-form {
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+
+    flex-shrink: 0;
+}
+
+#todo-input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 34px;
+
+    padding: 0 12px;
+
+    box-sizing: border-box;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.12);
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    font-size: 11px;
+}
+
+#todo-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#todo-input:focus {
+    border-color:
+        rgba(255, 255, 255, 0.35);
+
+    background:
+        rgba(255, 255, 255, 0.12);
+}
+
+.todo-form button {
+    height: 34px;
+
+    padding: 0 12px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    transition:
+        background 0.2s ease;
+}
+
+.todo-form button:hover {
+    background:
+        rgba(255, 255, 255, 0.25);
+}
+
+
+
+
+.todo-list {
+    flex: 1;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    scrollbar-width: none;
+}
+
+.todo-list::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+
+.todo-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px;
+
+    margin-bottom: 6px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.06);
+
+    transition:
+        background 0.2s ease;
+}
+
+.todo-item:hover {
+    background:
+        rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+.todo-checkbox {
+    width: 17px;
+    height: 17px;
+
+    margin: 0;
+
+    flex-shrink: 0;
+
+    appearance: none;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.4);
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    position: relative;
+}
+
+.todo-checkbox:checked {
+    background:
+        rgba(255, 255, 255, 0.8);
+
+    border-color: white;
+}
+
+.todo-checkbox:checked::after {
+    content: "✓";
+
+    position: absolute;
+
+    left: 3px;
+    top: -1px;
+
+    color: #111;
+
+    font-size: 13px;
+}
+
+
+
+.todo-text {
+    flex: 1;
+
+    min-width: 0;
+
+    color: white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 11px;
+
+    line-height: 1.3;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+
+    color:
+        rgba(255, 255, 255, 0.35);
+}
+
+
+
+
+.todo-delete {
+    border: none;
+
+    background: transparent;
+
+    color:
+        rgba(255, 255, 255, 0.3);
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    padding: 0 3px;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.2s ease,
+        color 0.2s ease;
+}
+
+.todo-item:hover .todo-delete {
+    opacity: 1;
+}
+
+.todo-delete:hover {
+    color: white;
+}
+
+
+
+.todo-empty {
+    text-align: center;
+
+    padding-top: 30px;
+
+    color:
+        rgba(255, 255, 255, 0.3);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 10px;
 }

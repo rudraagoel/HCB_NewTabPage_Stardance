@@ -34,10 +34,10 @@ function updateDigitalClock() {
 
             // Format Date
             const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
-            document.getElementById('digital-date').textContent = now.toLocaleDateString('en-US', options);
+            // document.getElementById('digital-date').textContent = now.toLocaleDateString('en-US', options);
         }
 
-        // Run clock immediately and update every second
+  
         updateDigitalClock();
         setInterval(updateDigitalClock, 1000);
 
@@ -138,3 +138,591 @@ function loadShortcuts() {
 
 
 loadShortcuts();
+
+
+
+
+
+const calendarCard = document.getElementById("calendar-card");
+
+
+
+
+calendarCard.addEventListener("click", function () {
+    calendarCard.classList.toggle("calendar-flipped");
+});
+
+
+function generateCalendar() {
+
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const date = now.getDate();
+
+
+
+    const weekdayNames = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+
+    const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+
+
+
+
+    document.getElementById("calendar-date").textContent =
+        String(date).padStart(2, "0");
+
+    document.getElementById("calendar-day").textContent =
+        weekdayNames[now.getDay()];
+
+    document.getElementById("calendar-month-year").textContent =
+        `${monthNames[month]}/${year}`;
+
+
+ 
+    const calendarDays =
+        document.getElementById("calendar-days");
+
+    calendarDays.innerHTML = "";
+
+
+ 
+
+    let firstDay =
+        new Date(year, month, 1).getDay();
+
+    firstDay =
+        firstDay === 0
+            ? 6
+            : firstDay - 1;
+
+
+
+
+    const daysInMonth =
+        new Date(year, month + 1, 0).getDate();
+
+
+    let currentDay = 1;
+
+
+
+    for (let row = 0; row < 6; row++) {
+
+        const tr = document.createElement("tr");
+
+
+        for (let column = 0; column < 7; column++) {
+
+            const th = document.createElement("th");
+
+            const position =
+                row * 7 + column;
+
+
+
+            if (
+                position >= firstDay &&
+                currentDay <= daysInMonth
+            ) {
+
+                th.textContent = currentDay;
+
+                th.classList.add("calendar-day");
+
+
+            
+
+                if (currentDay === date) {
+
+                    th.classList.add(
+                        "calendar-today"
+                    );
+
+                }
+
+
+                currentDay++;
+            }
+
+
+            tr.appendChild(th);
+        }
+
+
+        calendarDays.appendChild(tr);
+
+
+
+        if (currentDay > daysInMonth) {
+            break;
+        }
+    }
+}
+
+
+
+
+generateCalendar();
+
+
+
+
+
+const newsLink = document.getElementById("news-link");
+const newsImage = document.getElementById("news-image");
+const newsTitle = document.getElementById("news-title");
+const newsCategory = document.getElementById("news-category");
+const newsMeta = document.getElementById("news-meta");
+
+const fallbackImage =
+    "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop";
+
+
+
+
+const bingNewsRSS =
+    "https://www.bing.com/news/search?q=technology&format=rss";
+
+
+
+
+const newsAPI =
+    "https://api.rss2json.com/v1/api.json?rss_url=" +
+    encodeURIComponent(bingNewsRSS);
+
+
+
+
+async function loadNews() {
+
+    try {
+
+        const response =
+            await fetch(newsAPI);
+
+        if (!response.ok) {
+
+            throw new Error(
+                `HTTP ${response.status}`
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log("News:", data);
+
+
+        if (
+            data.status !== "ok" ||
+            !data.items ||
+            data.items.length === 0
+        ) {
+
+            throw new Error(
+                "No news articles found"
+            );
+
+        }
+
+
+
+
+        const article =
+            data.items[0];
+
+
+        newsTitle.textContent =
+            article.title ||
+            "Latest technology news";
+
+
+    
+
+        newsLink.href =
+            article.link ||
+            "https://www.bing.com/news";
+
+
+       
+        let source =
+            article.author ||
+            "BING NEWS";
+
+
+        newsCategory.textContent =
+            source.toUpperCase();
+
+
+        
+
+        if (article.pubDate) {
+
+            const published =
+                new Date(article.pubDate);
+
+            const now =
+                new Date();
+
+            const minutes =
+                Math.max(
+                    0,
+                    Math.floor(
+                        (now - published) / 60000
+                    )
+                );
+
+
+            let timeText;
+
+
+            if (minutes < 1) {
+
+                timeText =
+                    "Just now";
+
+            } else if (minutes < 60) {
+
+                timeText =
+                    `${minutes} min ago`;
+
+            } else if (minutes < 1440) {
+
+                const hours =
+                    Math.floor(
+                        minutes / 60
+                    );
+
+                timeText =
+                    `${hours}h ago`;
+
+            } else {
+
+                const days =
+                    Math.floor(
+                        minutes / 1440
+                    );
+
+                timeText =
+                    `${days}d ago`;
+
+            }
+
+
+            newsMeta.textContent =
+                `${source} • ${timeText}`;
+
+        } else {
+
+            newsMeta.textContent =
+                source;
+
+        }
+
+
+     
+
+        let image =
+            article.thumbnail;
+
+
+      
+
+        if (!image && article.enclosure) {
+
+            if (article.enclosure.link) {
+
+                image =
+                    article.enclosure.link;
+
+            }
+
+        }
+
+
+        newsImage.src =
+            image || fallbackImage;
+
+
+        newsImage.onerror =
+            function () {
+
+                newsImage.src =
+                    fallbackImage;
+
+            };
+
+
+    } catch (error) {
+
+        console.error(
+            "Could not load news:",
+            error
+        );
+
+
+        newsTitle.textContent =
+            "Unable to load latest news";
+
+        newsCategory.textContent =
+            "NEWS";
+
+        newsMeta.textContent =
+            "News service unavailable";
+
+        newsImage.src =
+            fallbackImage;
+
+        newsLink.href =
+            "https://www.bing.com/news";
+
+    }
+}
+
+
+
+
+loadNews();
+
+
+
+setInterval(
+    loadNews,
+    10 * 60 * 1000
+);
+
+
+
+
+const todoForm = document.getElementById("todo-form");
+const todoInput = document.getElementById("todo-input");
+const todoList = document.getElementById("todo-list");
+const todoCount = document.getElementById("todo-count");
+
+
+
+let todos = [];
+
+const savedTodos = localStorage.getItem("myTodoList");
+
+if (savedTodos !== null) {
+    todos = JSON.parse(savedTodos);
+}
+
+
+
+function saveTodos() {
+
+    localStorage.setItem(
+        "myTodoList",
+        JSON.stringify(todos)
+    );
+
+}
+
+
+
+todoForm.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+    const text = todoInput.value.trim();
+
+    if (text === "") {
+        return;
+    }
+
+
+    todos.push({
+        id: Date.now(),
+        text: text,
+        completed: false
+    });
+
+
+    saveTodos();
+
+    todoInput.value = "";
+
+    renderTodos();
+
+});
+
+
+
+
+function renderTodos() {
+
+    todoList.innerHTML = "";
+
+
+    if (todos.length === 0) {
+
+        todoList.innerHTML = `
+            <div class="todo-empty">
+                Nothing here yet.
+            </div>
+        `;
+
+        updateTodoCount();
+
+        return;
+    }
+
+
+    todos.forEach(function (todo) {
+
+        const item =
+            document.createElement("div");
+
+        item.className = "todo-item";
+
+
+        if (todo.completed) {
+            item.classList.add("completed");
+        }
+
+
+        const checkbox =
+            document.createElement("input");
+
+        checkbox.type = "checkbox";
+
+        checkbox.className =
+            "todo-checkbox";
+
+        checkbox.checked =
+            todo.completed;
+
+
+        const text =
+            document.createElement("span");
+
+        text.className =
+            "todo-text";
+
+        text.textContent =
+            todo.text;
+
+
+        const deleteButton =
+            document.createElement("button");
+
+        deleteButton.type = "button";
+
+        deleteButton.className =
+            "todo-delete";
+
+        deleteButton.textContent = "×";
+
+
+
+        checkbox.addEventListener(
+            "change",
+            function () {
+
+                todo.completed =
+                    checkbox.checked;
+
+                saveTodos();
+
+                renderTodos();
+
+            }
+        );
+
+
+
+        deleteButton.addEventListener(
+            "click",
+            function () {
+
+                todos =
+                    todos.filter(function (task) {
+
+                        return task.id !== todo.id;
+
+                    });
+
+                saveTodos();
+
+                renderTodos();
+
+            }
+        );
+
+
+        item.appendChild(checkbox);
+        item.appendChild(text);
+        item.appendChild(deleteButton);
+
+        todoList.appendChild(item);
+
+    });
+
+
+    updateTodoCount();
+
+}
+
+
+
+
+function updateTodoCount() {
+
+    const remaining =
+        todos.filter(function (todo) {
+
+            return !todo.completed;
+
+        }).length;
+
+
+    if (remaining === 0) {
+
+        todoCount.textContent =
+            "All tasks completed";
+
+    } else if (remaining === 1) {
+
+        todoCount.textContent =
+            "1 task remaining";
+
+    } else {
+
+        todoCount.textContent =
+            `${remaining} tasks remaining`;
+
+    }
+
+}
+
+
+
+renderTodos();
