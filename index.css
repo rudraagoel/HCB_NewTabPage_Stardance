@@ -1109,3 +1109,338 @@ body {
 
     font-size: 10px;
 }
+
+
+/* =========================================================
+   RESPONSIVE DESKTOP LAYOUT
+   Matches the proportional reference design.
+   Phone layout is left untouched.
+   ========================================================= */
+
+@media (min-width: 601px) {
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+
+    /* =========================
+       SEARCH
+       ========================= */
+
+    .searchbar-center-div {
+        padding-bottom: 0;
+
+        /*
+         * Reference search sits around 37% down the screen.
+         * Keep it proportional rather than using fixed pixels.
+         */
+        transform: translateY(-13vh);
+    }
+
+    .search {
+        width: 42.3vw;
+        max-width: none;
+        height: 7.1vh;
+    }
+
+
+    /* =========================
+       SHORTCUTS
+       ========================= */
+
+    .shortcuts {
+        position: fixed;
+
+        left: 3.4vw;
+        top: auto;
+        bottom: 3.6vh;
+
+        margin: 0;
+
+        width: 23.6vw;
+        height: 40vh;
+
+        max-width: none;
+    }
+
+
+    /* =========================
+       CALENDAR / NEWS
+       ========================= */
+
+    .calendar-widget {
+        position: fixed;
+
+        left: 34.8vw;
+        right: auto;
+
+        top: auto;
+        bottom: 3.6vh;
+
+        transform: none;
+
+        width: 31.4vw;
+        height: 31.5vh;
+    }
+
+
+    /* =========================
+       TODO
+       ========================= */
+
+    .todo {
+        position: fixed;
+
+        left: auto;
+        right: 2.8vw;
+
+        top: auto;
+        bottom: 3.6vh;
+
+        transform: none;
+
+        width: 23.6vw;
+        height: 40vh;
+    }
+}
+
+
+/* =========================================================
+   ULTRA-WIDE MONITORS
+   Only stop things from becoming absurdly large.
+   ========================================================= */
+
+@media (min-width: 1800px) {
+
+    .shortcuts {
+        width: min(23.6vw, 410px);
+        height: min(40vh, 345px);
+    }
+
+    .calendar-widget {
+        width: min(31.4vw, 550px);
+        height: min(31.5vh, 275px);
+    }
+
+    .todo {
+        width: min(23.6vw, 410px);
+        height: min(40vh, 345px);
+    }
+
+    .search {
+        width: min(42.3vw, 740px);
+    }
+}
+
+/* =========================================================
+   FINAL MOBILE LAYOUT
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    html,
+    body {
+        width: 100%;
+        min-height: 100%;
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    /* CLOCK */
+    .clock {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+        line-height: 1;
+    }
+
+    /* SEARCH */
+    .searchbar-center-div {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 2rem 0 0;
+        transform: none;
+    }
+
+    .search {
+        width: calc(100vw - 32px);
+        max-width: none;
+        height: 3.5rem;
+    }
+
+    /* SHORTCUTS */
+    .shortcuts {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+
+        width: calc(100vw - 32px);
+        height: 40vh;
+
+        margin: 6rem auto 0;
+        padding: 20px;
+
+        box-sizing: border-box;
+    }
+
+    /* CALENDAR */
+    .calendar-widget {
+        position: relative;
+
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+
+        width: calc(100vw - 32px);
+        height: 180px;
+
+        margin: 16px auto;
+
+        transform: none;
+    }
+
+    /* TODO */
+    .todo {
+        position: relative;
+
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+
+        width: calc(100vw - 32px);
+        height: 40vh;
+
+        min-height: 250px;
+
+        margin: 16px auto 30px;
+
+        transform: none;
+    }
+}
+
+
+/* VERY SMALL PHONES */
+@media (max-width: 380px) {
+
+    .search,
+    .shortcuts,
+    .calendar-widget,
+    .todo {
+        width: calc(100vw - 24px);
+    }
+
+    .shortcuts {
+        height: 38vh;
+        margin-top: 5rem;
+    }
+
+    .todo {
+        min-height: 220px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE - COMPACT LOWER WIDGETS
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* TODO */
+    .todo {
+        height: 42vh;
+        min-height: 0;
+        max-height: 330px;
+        margin: 16px auto 20px;
+    }
+
+    /* Keep the todo input comfortable */
+    .todo input {
+        width: calc(100% - 90px);
+    }
+
+    /* NEWS */
+    .news,
+    .news-widget,
+    .news-container {
+        width: calc(100vw - 32px);
+        max-width: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media (max-width: 600px) {
+
+    /* SEARCH BAR */
+    .searchbar-center-div {
+        position: absolute;
+        top: 26vh;
+        left: 0;
+
+        width: 100%;
+        height: 3.5rem;
+
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transform: none;
+        z-index: 1000;
+    }
+
+    .search {
+        width: calc(100vw - 32px);
+        max-width: none;
+        height: 3.5rem;
+
+        position: relative;
+        z-index: 1001;
+    }
+
+
+    /* SHORTCUTS */
+    .shortcuts {
+        position: relative;
+
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+
+        width: calc(100vw - 32px);
+        height: 40vh;
+
+        margin: 34vh auto 0;
+
+        box-sizing: border-box;
+
+        z-index: 1;
+    }
+
+
+    /* EVERYTHING BELOW SHORTCUTS */
+    .calendar-widget,
+    .todo {
+        position: relative;
+
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+
+        transform: none;
+    }
+}
