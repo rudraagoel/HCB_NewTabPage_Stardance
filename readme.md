@@ -1,5 +1,5 @@
 # Hello Reader,
-
+Proj. Preview : https://user-cdn.hackclub-assets.com/01a18bc0-fcc3-7067-91e2-a74f8927d276/journal-1793346042205.png
 I'm **Rudra Goel..**
 
 I've built this new tab page as a part of **Hack Club Stardance**, but have now decided to submit it to **Live by Hack Club!**
