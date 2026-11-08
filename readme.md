@@ -146,13 +146,16 @@ If you are still having issues you can check the repository. Open an issue!
 
 ---
 
-P.S: I am now submitting this project to Hack Club Pixl of Stardance / Live YSWS mainly because of the better rates and honestly a much better community.
+**P.S.:** This project originally started as part of Hack Club Stardance. I initially considered moving it to Live YSWS, but eventually decided to submit it to Hack Club Pixl instead.
 
 This was a fun little project to build and a nice way to experiment with frontend development, JavaScript, browser local storage, APIs and UI design!
 
-Proj. Preview: https://user-cdn.hackclub-assets.com/01a18bc0-fcc3-7067-91e2-a74f8927d276/journal-1793346042205.png
+Proj. Preview:
+<img width="1853" height="971" alt="image" src="image.png" />
+
 
 
 It is also one of the projects I am building during my Hack Club journey.
+
 
 Thank you for checking out my project!
